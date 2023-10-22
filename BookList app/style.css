@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body{
+    box-sizing: border-box;
+    background-color: rgb(212, 212, 212);  
+    font-family: Poppins;
+    overflow: auto;
+    margin : 0;
+    padding: 0;
+}
+
+#container{
+    background-color: #fff;
+    width: 40rem;
+    height: 80%;
+    padding: 20px;
+    padding-top: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+#container h1{
+    font-size: 2rem;
+}
+#container h1, p{
+    text-align: center;
+}
+.book-form input{
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+    margin: 20px;
+    padding: 12px;
+    border: 1.5px solid rgb(230, 230, 230); 
+    border-radius: 5px;
+    outline: none;
+}
+label{
+    margin: 0 25px;
+    font-weight: bold;
+}
+
+button{
+    text-align: center;
+    width: 94%;
+    display: block;
+    margin: auto;
+    padding: 15px;
+    background-color: rgba(21, 1, 36, 0.904);
+    color: #fff;
+    border: none;
+    margin-top: 40px;
+}
+button:hover{
+ transform: scale(1.02);
+ transition:  ease-in-out 0.5s;
+}
+
+.row-area td {
+    text-align: center;
+    padding-left: 70px;
+    padding-right: 70px;
+  
+}
+
+  .row-area {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+  
