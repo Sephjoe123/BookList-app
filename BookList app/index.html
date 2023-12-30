@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/153c373bd9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
 <body>
     <div id="container">
@@ -32,20 +34,23 @@
             <input type="text" id="input3" name="input3" placeholder="ISBN">
           </form>
 
-          <button>
+          <button id = "add">
             Add Book
           </button>
 
           <section class="row-area">
             
-            
             <table class="row-area">
-                <tr>
-                    <td>Title</td>
-                    <td>Author</td>
-                    <td>ISBN</td>
-                </tr>
+              <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+            </tr>
+               </thead>
+               <tbody class = "row-list"></tbody>
             </table>
+            
           </section>
     </div>
 </body>
