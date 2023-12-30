@@ -1,72 +1,91 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-body{
+
+body {
     box-sizing: border-box;
-    background-color: rgb(212, 212, 212);  
-    font-family: Poppins;
-    overflow: auto;
-    margin : 0;
+    background-color: rgb(212, 212, 212);
+    font-family: 'Poppins', sans-serif;
+    overflow: visible;
+    margin: 0;
     padding: 0;
 }
 
-#container{
+#container {
     background-color: #fff;
-    width: 40rem;
-    height: 80%;
+    position: relative;
+    margin: 0 auto;
     padding: 20px;
-    padding-top: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    max-width: 600px;
+    margin-top: 10vh;
+}
 
-}
-#container h1{
+#container h1 {
     font-size: 2rem;
-}
-#container h1, p{
     text-align: center;
 }
-.book-form input{
+
+#container p {
+    text-align: center;
+}
+
+.book-form input {
     display: block;
     margin: 0 auto;
     width: 90%;
-    margin: 20px;
+    margin: 10px auto; /* Adjusted margin for better spacing */
     padding: 12px;
-    border: 1.5px solid rgb(230, 230, 230); 
+    border: 1.5px solid rgb(230, 230, 230);
     border-radius: 5px;
     outline: none;
 }
-label{
+
+label {
     margin: 0 25px;
     font-weight: bold;
 }
 
-button{
+button {
     text-align: center;
-    width: 94%;
+    width: 90%;
     display: block;
-    margin: auto;
+    margin: 20px auto;
     padding: 15px;
     background-color: rgba(21, 1, 36, 0.904);
     color: #fff;
     border: none;
-    margin-top: 40px;
-}
-button:hover{
- transform: scale(1.02);
- transition:  ease-in-out 0.5s;
 }
 
-.row-area td {
-    text-align: center;
-    padding-left: 70px;
-    padding-right: 70px;
-  
+button:hover {
+    transform: scale(1.02);
+    transition: ease-in-out 0.5s;
 }
-
-  .row-area {
-    text-align: center;
+table{
     margin: 0 auto;
-    margin-top: 30px;
-  }
-  
+    padding: 10px;
+}
+
+th{
+   padding: 10px ; 
+   
+}
+.row-list td{
+    padding: 10px 50px;
+    font-size: 1.1rem;
+    
+    
+}
+.fa-xmark{
+    margin-top: 0.63rem;
+    font-size: 1.3rem;
+    color: red;
+}
+
+@media screen and (max-width: 600px) {
+    #container {
+        padding: 10px;
+        max-width: 90%;
+    }
+
+    .row-area td {
+        padding: 10px;
+    }
+}
