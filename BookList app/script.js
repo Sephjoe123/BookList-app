@@ -1,3 +1,5 @@
+let books = JSON.parse(localStorage.getItem("books")) || [];
+
 const addBtn = document.getElementById("add");
 const input = document.getElementById("input1");
 const author = document.getElementById("input2");
@@ -13,61 +15,76 @@ class Book {
   }
 }
 
-function createBookList(book) {
+function createBookList() {
   const displayArea = document.querySelector(".row-list");
-  const tableArea = document.createElement("tr");
-  const delBtn = document.createElement("li");
+  displayArea.innerHTML = "";
 
-  delBtn.className = "fa-solid fa-xmark";
-  tableArea.classList.add("row-area");
-  tableArea.innerHTML = `
-  
-  <td>${book.title}</td>
-  <td>${book.author}</td>
-  <td>${book.isbn}</td>
-  
-  `;
-  tableArea.appendChild(delBtn);
-  displayArea.appendChild(tableArea);
-  deleteBook(delBtn);
+  books.forEach((bookList) => {
+    const tableArea = document.createElement("tr");
+    const delBtn = document.createElement("li");
+
+    delBtn.className = "fa-solid fa-xmark";
+    tableArea.classList.add("row-area");
+    tableArea.innerHTML = `
+      <td>${bookList.title}</td>
+      <td>${bookList.author}</td>
+      <td>${bookList.isbn}</td>
+    `;
+
+    tableArea.appendChild(delBtn);
+    displayArea.appendChild(tableArea);
+    deleteBook(delBtn);
+  });
 }
 
-function addBookToList() {
-  let newBook;
+window.onload = createBookList();
 
+function addBookToList(e) {
+  e.preventDefault();
   const inputValue = document.getElementById("input1").value;
   const authorValue = document.getElementById("input2").value;
   const isbnValue = document.getElementById("input3").value;
-  checkInputField(inputValue, authorValue, isbnValue, newBook);
+  checkInputField(inputValue, authorValue, isbnValue);
 }
 
 function deleteBook(del) {
   del.addEventListener("click", () => {
-    del.parentElement.remove();
+    const index = books.indexOf(del.parentElement);
 
-    modal.style.display = "block"
-    modal.classList.add("removed-list")
-    modal.innerText = "Task removed from list"
+    if(books.length >= 1){
+      modal.style.display = "block";
+      modal.classList.add("removed-list");
+      modal.innerText = "Book removed from the list";
+      
+      books.splice(index, 1);
+      localStorage.setItem("books", JSON.stringify(books));
+  
+      createBookList();
+      setTimeout(() => {
+        modal.style.display = "none";
+      }, 2000);
+    }
 
-    setTimeout(() =>{
-      modal.style.display = "none"
-    }, 2000)
   });
 
   clearInputField(inputElements);
 }
 
-function checkInputField(inputValue, authorValue, isbnValue, newBook) {
+function checkInputField(inputValue, authorValue, isbnValue) {
   if (inputValue === "" || authorValue === "" || isbnValue === "") {
-    alert("one or more of the input field is missing !");
+    alert("One or more of the input fields is missing!");
   } else {
-    newBook = new Book(inputValue, authorValue, isbnValue);
+    const newBook = new Book(inputValue, authorValue, isbnValue);
+    books.push(newBook);
+    localStorage.setItem("books", JSON.stringify(books));
+    console.log(books);
+
     modal.style.display = "block";
 
     setTimeout(() => {
       modal.style.display = "none";
     }, 2000);
-    createBookList(newBook);
+    createBookList();
   }
 }
 
@@ -80,3 +97,11 @@ function clearInputField(inputElements) {
 }
 
 addBtn.addEventListener("click", addBookToList);
+
+inputElements.forEach((input) => {
+  input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      addBookToList(e);
+    }
+  });
+});
