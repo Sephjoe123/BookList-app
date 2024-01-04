@@ -1,5 +1,6 @@
 let books = JSON.parse(localStorage.getItem("books")) || [];
 
+
 const addBtn = document.getElementById("add");
 const input = document.getElementById("input1");
 const author = document.getElementById("input2");
@@ -21,7 +22,7 @@ function createBookList() {
 
   books.forEach((bookList) => {
     const tableArea = document.createElement("tr");
-    const delBtn = document.createElement("li");
+     const delBtn = document.createElement("li");
 
     delBtn.className = "fa-solid fa-xmark";
     tableArea.classList.add("row-area");
@@ -33,7 +34,7 @@ function createBookList() {
 
     tableArea.appendChild(delBtn);
     displayArea.appendChild(tableArea);
-    deleteBook(delBtn);
+    deleteBook(delBtn)
   });
 }
 
@@ -48,22 +49,25 @@ function addBookToList(e) {
 }
 
 function deleteBook(del) {
-  del.addEventListener("click", () => {
+  del.addEventListener("click", (e) => {
     const index = books.indexOf(del.parentElement);
 
-    if(books.length >= 1){
-      modal.style.display = "block";
-      modal.classList.add("removed-list");
-      modal.innerText = "Book removed from the list";
-      
+    if(e.target.classList.contains("fa-xmark") ){
       books.splice(index, 1);
       localStorage.setItem("books", JSON.stringify(books));
-  
+      modal.style.display = "block"
+
+      modal.classList.add("removed-list");
+      modal.innerText = "book removed from list"
+      
       createBookList();
       setTimeout(() => {
         modal.style.display = "none";
+        modal.classList.remove("removed-list")
+        modal.innerText = "Book-info added successfully";
       }, 2000);
     }
+
 
   });
 
@@ -77,7 +81,6 @@ function checkInputField(inputValue, authorValue, isbnValue) {
     const newBook = new Book(inputValue, authorValue, isbnValue);
     books.push(newBook);
     localStorage.setItem("books", JSON.stringify(books));
-    console.log(books);
 
     modal.style.display = "block";
 
